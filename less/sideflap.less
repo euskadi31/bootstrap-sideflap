@@ -1,0 +1,153 @@
+@import "bootstrap/less/mixins.less";
+@import "bootstrap/less/variables.less";
+@import "variables.less";
+
+//
+// SideFlaps
+// --------------------------------------------------
+
+// .sideflap-open      - body class for killing the scroll
+// .sideflap           - container to scroll within
+// .sideflap-dialog    - positioning shell for the actual sideflap
+// .sideflap-content   - actual sideflap w/ bg and corners and shit
+
+// Kill the scroll on the body
+.sideflap-open {
+    overflow: hidden;
+    
+    // Account for hiding of scrollbar
+    body&,
+    .navbar-fixed-top,
+    .navbar-fixed-bottom {
+        margin-right: 15px
+    }
+}
+
+// Container that the sideflap scrolls within
+.sideflap {
+    display: none;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: @zindex-sideflap-background;
+
+    // When fading in the sideflap, animate it to slide down
+    &.fade .sideflap-dialog {
+        .translate(100%, 0);
+        .transition-transform(~"0.2s ease-out");
+    }
+    &.in .sideflap-dialog {
+        .translate(0, 0);
+    }
+}
+
+// Shell div to position the sideflap with bottom padding
+.sideflap-dialog {
+    width: auto;
+    z-index: (@zindex-sideflap-background + 10);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+// Actual sideflap
+.sideflap-content {
+    padding-bottom: 130px;
+    height: 100%;
+    position: relative;
+    background-color: @sideflap-content-bg;
+    .box-shadow(0 3px 9px rgba(0,0,0,.5));
+    background-clip: padding-box;
+    // Remove focus outline from opened sideflap
+    outline: none;
+}
+
+// SideFlap background
+.sideflap-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: (@zindex-sideflap-background - 10);
+    background-color: @sideflap-backdrop-bg;
+    // Fade for backdrop
+    &.fade { 
+        .opacity(0);
+    }
+    &.in { 
+        .opacity(.5);
+    }
+}
+
+// SideFlap header
+// Top section of the sideflap w/ title and dismiss
+.sideflap-header {
+    padding: @sideflap-title-padding;
+    border-bottom: 1px solid @sideflap-header-border-color;
+    min-height: (@sideflap-title-padding + @sideflap-title-line-height);
+}
+// Close icon
+.sideflap-header .close {
+    margin-top: -2px;
+}
+
+// Title text within header
+.sideflap-title {
+    margin: 0;
+    line-height: @sideflap-title-line-height;
+}
+
+// SideFlap body
+// Where all sideflap content resides (sibling of .sideflap-header and .sideflap-footer)
+.sideflap-body {
+    position: relative;
+    padding: @sideflap-inner-padding;
+    overflow: auto;
+    z-index: 10;
+    max-height: 100%;
+    height: auto !important;
+    height: 100%;
+}
+
+// Footer (for actions)
+.sideflap-footer {
+    padding: (@sideflap-inner-padding - 1) @sideflap-inner-padding @sideflap-inner-padding;
+    text-align: right; // right align buttons
+    border-top: 1px solid @sideflap-footer-border-color;
+    .clearfix(); // clear it in case folks use .pull-* classes on buttons
+    z-index: 20;
+    position: relative;
+    margin-bottom: -155px;
+
+    // Properly space out buttons
+    .btn + .btn {
+        margin-left: 5px;
+        margin-bottom: 0; // account for input[type="submit"] which gets the bottom margin like all other inputs
+    }
+    // but override that for button groups
+    .btn-group .btn + .btn {
+        margin-left: -1px;
+    }
+    // and override it for block buttons as well
+    .btn-block + .btn-block {
+        margin-left: 0;
+    }
+}
+
+// Scale up the sideflap
+@media screen and (min-width: @screen-tablet) {
+
+    .sideflap-dialog {
+        left: 30%;
+    }
+
+    .sideflap-content {
+        .box-shadow(0 5px 15px rgba(0,0,0,.5));
+    }
+}

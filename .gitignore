@@ -1,0 +1,6 @@
+*~
+.*.swp
+*.swp
+.DS_store
+node_modules
+bower_components

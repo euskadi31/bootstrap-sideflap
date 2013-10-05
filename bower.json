@@ -1,0 +1,22 @@
+{
+    "name": "bootstrap-sideflap",
+    "version": "0.0.1",
+    "authors": [
+        "Axel Etcheverry <axel@etcheverry.biz>"
+    ],
+    "description": "Bootstrap Side Flap",
+    "main": "dist/js/sideflap.min.js",
+    "keywords": [
+        "bootstrap",
+        "side",
+        "flap"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "node_modules",
+        "bower_components"
+    ],
+    "devDependencies": {
+        "bootstrap": "3.0.0"
+    }
+}

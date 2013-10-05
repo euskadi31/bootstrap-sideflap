@@ -1,0 +1,14 @@
+{
+  "name": "bootstrap-sideflap",
+  "version": "0.0.1",
+  "devDependencies": {
+    "bower": "~0.10.0",
+    "grunt": "~0.4.1",
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-less": "~0.6.2",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-mkdir": "*"
+  }
+}
